@@ -68,7 +68,7 @@ public class Senior {
                  addTester();
               break;
               case 3:
-                 Page.firstPage();;
+                 new Page().firstPage();;
               break;
               case 4:
                  seniorPage();
@@ -227,7 +227,7 @@ public class Senior {
             int choice = senior_scanner.nextInt();
             switch (choice) {
               case 1:
-              Page.firstPage();
+              new Page().firstPage();
               break;
               case 2:
               addPerson();

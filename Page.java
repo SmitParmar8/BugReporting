@@ -3,14 +3,14 @@ package BugReporting;
 import java.util.Scanner;
 
 import BugReporting.*;
-public class Page {
+public class Page extends Pages {
 
 public static int choice;
 public static String wlLine ="|      Select from below Options     |"+"\n";
 public static String  options= "1.Log in" + "\n"+"2.Add Person" + "\n"+ "3.EXIT"+ "\n";;
 public static Scanner page_scanner = new Scanner(System.in);
 //First Page
-  public static void firstPage() throws Exception{
+  public void firstPage() throws Exception{
     
     Thread t = Thread.currentThread();
     
@@ -27,7 +27,7 @@ public static Scanner page_scanner = new Scanner(System.in);
               System.out.print(options.charAt(i));
               t.sleep(20);
           }
-          secondPage();
+          new Page().secondPage();
     }
 
 // Second Page
@@ -103,7 +103,7 @@ public static Scanner page_scanner = new Scanner(System.in);
           break;
       
         case 4:
-          firstPage();
+          new Page().firstPage();
           break;
       
         case 5:

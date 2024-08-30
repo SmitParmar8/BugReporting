@@ -65,7 +65,7 @@ public class Developer {
                     break;
             
                 case 4:
-                    Page.firstPage();                
+                    new Page().firstPage();                
                     break;
             
                 case 3:
