@@ -1,9 +1,12 @@
-package DSDB;
+package BugReporting;
+
 
 import java.util.Scanner;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+
+   
 public class Misc {
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_YELLOW = "\u001B[33m";
@@ -42,6 +45,15 @@ public class Misc {
         return color + res + "\u001B[0m";
     }
 
+    public static void welcome() {
+        System.out.println(ANSI_GREEN + "__          __  ______   _         _____    ____    __  __   ______ \r\n" + //
+                " \\ \\        / / |  ____| | |       / ____|  / __ \\  |  \\/  | |  ____|\r\n" + //
+                "  \\ \\  /\\  / /  | |__    | |      | |      | |  | | | \\  / | | |__   \r\n" + //
+                "   \\ \\/  \\/ /   |  __|   | |      | |      | |  | | | |\\/| | |  __|  \r\n" + //
+                "    \\  /\\  /    | |____  | |____  | |____  | |__| | | |  | | | |____ \r\n" + //
+                "     \\/  \\/     |______| |______|  \\_____|  \\____/  |_|  |_| |______|" + ANSI_RESET);
+    }
+
     public static int checkInt(Scanner inp, String s) {
         int n = 0;
         try {
@@ -54,6 +66,15 @@ public class Misc {
         }
         return n;
     }
+
+    public static boolean checkTimeIsInBetween(LocalTime input, LocalTime start, LocalTime end) {
+        return input.isAfter(start) && input.isBefore(end);
+    }
+
+    public static String printTime(LocalTime t) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");
+        String res = dtf.format(t).toUpperCase();
+        return res;
+
+    }
 }
-
-

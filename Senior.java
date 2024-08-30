@@ -1,12 +1,11 @@
-package DSDB;
+package BugReporting;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
-import com.mysql.cj.protocol.Resultset;
-
-import DSDB.*;
+import BugReporting.*;
 
 
 public class Senior {
@@ -75,7 +74,7 @@ public class Senior {
                  seniorPage();
               break;
               default:
-              System.out.println(Misc.BRIGHT_BACKGROUND_RED+Misc.ANSI_WHITE+"Please select valid values" + Misc.ANSI_RESET);
+              // System.out.println(Misc.BRIGHT_BACKGROUND_RED+Misc.ANSI_WHITE+"Please select valid values" + Misc.ANSI_RESET);
               Misc.cls();
               break;
             }  

@@ -1,4 +1,4 @@
-package DSDB;
+package BugReporting;
 import java.util.*;
 import java.sql.*;
 
@@ -8,11 +8,18 @@ public class DataBase {
     String dbuser = "root";
     String dbpass = "";
     public static Connection con;
-    public DataBase() throws Exception {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        con = DriverManager.getConnection(dburl, dbuser, dbpass);
-        System.out.println("success");
-        
-    }
+    public DataBase() {
 
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            System.out.println("Class not found Excepiton ");
+        }
+        try {
+            con = DriverManager.getConnection(dburl, dbuser, dbpass);
+        } catch (SQLException e) {
+           System.out.println("SQL Exception");
+        }
+
+    }
 }

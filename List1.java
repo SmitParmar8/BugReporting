@@ -1,4 +1,5 @@
-package DSDB;
+package BugReporting;
+
 
 public class List1 {
     //Node Class
@@ -88,7 +89,8 @@ public class List1 {
         {
             int i=1;
         while (temp!=null) {
-            System.out.println(i+". "+temp.description + "----"+temp.priority);
+            System.out.print(i+".");
+            System.out.printf("%-40s %s\n", temp.description, temp.priority);
             temp= temp.next;
             i++;
             }

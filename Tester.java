@@ -1,9 +1,11 @@
-package DSDB;
+package BugReporting;
+import BugReporting.*;
 import java.util.*;
-
-import DSDB.*;
-
 import java.sql.*;
+
+
+
+
 public class Tester {
     public static List1 tester_list = new List1();
     public static String  user;
@@ -11,6 +13,7 @@ public class Tester {
     public static Scanner tester_scanner = new Scanner(System.in);
     public static PreparedStatement pst;
     public static String priority ;
+    public static int choice;
 
 // login Tester
     public static void login_tester() throws Exception{
@@ -28,6 +31,8 @@ public class Tester {
                 temp = 1;
                 System.out.println("Log in success");
                 System.out.println("Welcome ");
+                Thread.currentThread().sleep(2000);
+                Misc.cls();
                 tester_Page();
         }
             if(temp!=1){
@@ -47,6 +52,8 @@ public class Tester {
         switch (choice) {
           case 1:
             displaytes_sorterd();
+            Thread.currentThread().sleep(5000);
+            Misc.cls();
             break;
         
           case 2:
@@ -67,7 +74,8 @@ public class Tester {
 }
 //dipslay
     public static void displaytes_sorterd() throws Exception{
-
+      Thread.currentThread().sleep(2000);
+      Misc.cls();
         String sql = "SELECT Task_Detail,Task_Priority FROM task ORDER BY FIELD(Task_Priority, 'High', 'Medium', 'Low');";
         pst = DataBase.con.prepareStatement(sql);
         ResultSet rs = pst.executeQuery(sql);
@@ -83,28 +91,33 @@ public class Tester {
 
     public static void addBug() throws  Exception {
 
-        System.out.println("Enter Bug Details \n");
-        String details = tester_scanner.nextLine();
-        System.out.println("select priority \n 1.High \n 2.Medium \n 3.Low ");
-        System.out.print("\n"+Misc.ANSI_GRAY+" Enter Priority = " + Misc.ANSI_RESET);
-        int choice = tester_scanner.nextInt();
-
-        switch (choice) {
-          case 1:
-          priority = "High";
-          break;
-          case 2:
-          priority = "Medium";
-          break;
-          case 3:
-          priority = "Low";
-          break;
-          default:
-          System.out.println(Misc.BRIGHT_BACKGROUND_RED+Misc.ANSI_WHITE+"Please select valid values" + Misc.ANSI_RESET);
-          addBug();
-          Misc.cls();
-          break;
-        }
+      System.out.println("select priority \n 1.High \n 2.Medium \n 3.Low ");
+      System.out.print("\n"+Misc.ANSI_GRAY+" Enter Priority = " + Misc.ANSI_RESET);
+      try {
+        choice = tester_scanner.nextInt();
+        tester_scanner.nextLine();
+      } catch (Exception e) {
+        // TODO: handle exception
+        System.out.println(Misc.BRIGHT_BACKGROUND_RED+Misc.ANSI_WHITE+"Please select valid values" + Misc.ANSI_RESET);
+        tester_scanner.nextLine();
+        Thread.currentThread().sleep(200);
+        Misc.cls();
+        addBug();
+      }
+      
+      switch (choice) {
+        case 1:
+        priority = "High";
+        break;
+        case 2:
+        priority = "Medium";
+        break;
+        case 3:
+        priority = "Low";
+        break;
+      }
+      System.out.println("Enter Bug Details \n");
+      String details = tester_scanner.nextLine();
         long millis=System.currentTimeMillis();  
         java.sql.Date date = new java.sql.Date(millis);  
         String sql = "call insertintotask(?,?,?) ";
@@ -120,7 +133,6 @@ public class Tester {
         else{
           System.out.println("insert failed");
         }
-        tester_scanner.nextLine();
         Misc.cls();
     }
 }
